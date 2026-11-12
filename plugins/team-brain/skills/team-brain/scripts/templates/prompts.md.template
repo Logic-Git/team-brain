@@ -1,0 +1,23 @@
+# Saved prompts
+
+Prompts you want to replay. Instead of retyping the same instructions, save one here
+and say **"run the <name> prompt"** - the agent fetches just that section and runs it.
+
+This file is yours; edit it by hand whenever you like. Two rules keep it readable:
+
+1. Every prompt starts with a `## Name` heading at the start of a line. Pick a name
+   you would actually say out loud - that is what gets searched.
+2. The `> summary:` line directly under the heading is the index. Everything after
+   it is the prompt itself, and may call other skills.
+
+```markdown
+## Daily standup notes
+> summary: Summarise yesterday's commits and open PRs into standup notes.
+<!-- tags: daily, git -->
+
+Look at my commits since yesterday morning and my open PRs, and write three
+bullet points: done, doing, blocked.
+```
+
+<!-- memory:prompts v1 -->
+

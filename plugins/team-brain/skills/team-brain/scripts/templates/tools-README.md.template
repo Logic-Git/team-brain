@@ -1,0 +1,34 @@
+# Tools
+
+Executable helpers this repo owns - scrapers, exporters, API clients, one-off
+loaders. The team-brain skill ships no tools; everything here belongs to this repo.
+
+## Layout
+
+```
+tools/
+  <tool-name>/
+    README.md          invocation contract: commands, flags, auth, outputs
+    requirements.txt   this tool's own dependencies
+    <entrypoint>.py
+```
+
+## Registering a tool
+
+**A tool that is not a node in the knowledge graph does not exist to the agent**,
+because the graph is what gets searched. After adding a tool, add a node whose key
+is the tool's directory name:
+
+```yaml
+  infrastructure:
+    <tool_name>:
+      type: python_script
+      in: []
+      out: [<nodes that consume its output>]
+      context: context/<tool_name>.md
+      notes: "What it does, which credentials/scopes it needs, when to reach for it."
+```
+
+The context file must carry the **verbatim invocation** (the exact command line),
+any auth or secret requirements, where output lands, and known failure modes.
+`kg.py validate` warns about any `tools/<name>/` with no matching node.

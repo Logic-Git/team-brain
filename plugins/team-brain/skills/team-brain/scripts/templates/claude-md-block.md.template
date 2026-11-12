@@ -1,0 +1,30 @@
+<!-- BEGIN team-brain -->
+## Project memory (team-brain)
+
+This repo has a knowledge base: a graph of the entities this project touches
+(`inputs/memory/knowledge_graph.yaml`), each linked to a markdown context file holding
+the details, gotchas and verbatim code that the code itself does not state.
+
+**Before answering any question about a named entity in this repo - or about what
+feeds what, what breaks if something changes, or what we already know about
+something - invoke `/team-brain:team-brain` first.** Do not answer from the code
+alone, and do not conclude that something does not exist without checking the graph.
+
+Also invoke it when the user says "remember this", "record the learning", "save to
+the knowledge base", or corrects a fact about an entity.
+
+All memory lives in this knowledge base. Do not use Claude Code's built-in auto
+memory in this repo.
+
+**Saved prompts live in `prompts.md` at the repo root.** When the user says "run the
+<name> prompt", "rerun my daily ...", "do the usual ...", or "save this as a prompt",
+invoke `/team-brain:team-brain` - it finds the matching prompt by name and runs it.
+
+<!-- Add this repo's own trigger nouns here: replace this comment with the words
+     people actually use for the things in this repo, so questions phrased in
+     domain language reliably reach the skill. For example:
+     "...about our BigQuery tables, the returns and forecast pipelines, Monday
+     boards, Looker dashboards, or the gmail tool..."
+     Ask the agent to do it: "add <these things> as trigger keywords for the
+     team-brain skill". -->
+<!-- END team-brain -->

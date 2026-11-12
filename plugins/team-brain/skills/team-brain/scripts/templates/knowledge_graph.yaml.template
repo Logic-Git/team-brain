@@ -1,0 +1,29 @@
+# Knowledge Graph
+# Structured map of the entities this project touches, and how they connect.
+# The agent reads this to decide which context files to open. Keep it in sync.
+#
+# Node schema (exactly these five fields, in this order):
+#   type:    <platform>_<kind>  e.g. bigquery_table, monday_board, python_script
+#            The platform prefix is what routes lookups to an MCP server.
+#   in:      [upstream node ids]    - entities whose output this one consumes
+#   out:     [downstream node ids]  - entities that consume this one's output
+#   context: relative path to a markdown file (e.g. context/thing.md) or null
+#   notes:   one-line retrieval hint - scanned first, so make it enough to judge
+#            relevance without opening the context file
+#
+# Rules that keep this usable:
+#   - Node keys are GLOBAL ids. Never define the same key in two sections.
+#   - Keys should match the entity's real name in its platform, so the key can be
+#     used directly as an MCP lookup key.
+#   - Links are bidirectional: if A lists B in `out`, B must list A in `in`.
+#   - Sections are for human navigation only. `in`/`out` are the real structure.
+
+sections:
+
+  infrastructure:
+    example_entity:
+      type: example_kind
+      in: []
+      out: []
+      context: null
+      notes: "Replace this with a real entity. Delete this node once you have one."

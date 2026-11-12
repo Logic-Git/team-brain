@@ -1,0 +1,45 @@
+# Configuration for the team-brain skill.
+# EVERY key is optional - delete this file entirely to accept all defaults.
+# Paths are relative to the repo root (the folder holding .claude/).
+
+# --- Locations ---------------------------------------------------------------
+# graph: inputs/memory/knowledge_graph.yaml   # default
+# context_dir: inputs/memory/context          # default
+# tools_dir: tools                            # default
+# prompts: prompts.md                         # default - the saved-prompt library
+
+# --- Writing -------------------------------------------------------------------
+# auto   (default) - record knowledge on its own, but only once it is finalized:
+#                    the user confirmed it, or it is a fact read from a trusted source.
+#                    Every write is announced in one line so it can be undone.
+# manual           - record nothing until the user says "record learning" / "save to
+#                    the knowledge base"; then propose briefly and write what is approved.
+# write_mode: auto
+
+# --- MCP routing -------------------------------------------------------------
+# A node's `type` prefix (the <platform> in <platform>_<kind>) is matched against
+# the available MCP tool names by lowercasing them, stripping non-alphanumerics,
+# and looking for the platform token as a SUBSTRING. That already resolves most
+# servers whose names do not match exactly - so list a platform here ONLY when the
+# automatic match gets it wrong.
+#
+# Use `none` to mean "no server exists for this platform, ask the user instead of
+# hunting for one".
+#
+# platforms:
+#   gsheet: personal-google-drive
+#   looker: none
+
+# --- Behaviour (NOT triggering) ----------------------------------------------
+# Triggering is controlled by the block in CLAUDE.md, because that file is loaded
+# before the skill is invoked. This file is only read AFTER invocation, so it can
+# change how the skill behaves but never whether it fires.
+#
+# instructions: .claude/memory-instructions.md   # extra repo rules, keep it short
+
+# --- Conventions -------------------------------------------------------------
+# naming:
+#   type_format: "<platform>_<kind>"   # set to "free" to disable the type lint
+# index:
+#   inject: true      # false = do not auto-print the node index on invoke
+#   max_nodes: 600    # above this, print section counts instead of every node
