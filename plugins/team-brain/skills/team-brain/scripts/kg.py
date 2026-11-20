@@ -445,7 +445,8 @@ def cmd_doctor(args):
     else:
         print("[!] Claude Code built-in auto memory: not turned off for this project, so")
         print("    a second memory competes with this one.")
-        print("    Fix: kg.py init --root \"%s\" --settings-only" % info["root"])
+        print("    Fix: kg.py init --root \"%s\" --settings-only  (or set" % info["root"])
+        print("    \"autoMemoryEnabled\": false in .claude/settings.local.json for just you)")
 
     if info["config_path"]:
         print("[ok] config: %s" % info["config_path"])
@@ -480,15 +481,19 @@ SETTINGS_REL = Path(".claude") / "settings.json"
 
 
 def _auto_memory_state(root):
-    """Value of autoMemoryEnabled in the project's .claude/settings.json, or None."""
-    path = Path(root) / SETTINGS_REL
-    if not path.is_file():
-        return None
-    try:
-        data = json.loads(path.read_text(encoding="utf-8") or "{}")
-    except ValueError:
-        return None
-    return data.get("autoMemoryEnabled") if isinstance(data, dict) else None
+    """autoMemoryEnabled for the project: .claude/settings.local.json (personal,
+    gitignored) wins over .claude/settings.json (shared). None if neither sets it."""
+    for rel in (Path(".claude") / "settings.local.json", SETTINGS_REL):
+        path = Path(root) / rel
+        if not path.is_file():
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8") or "{}")
+        except ValueError:
+            continue
+        if isinstance(data, dict) and "autoMemoryEnabled" in data:
+            return data["autoMemoryEnabled"]
+    return None
 
 
 def _write_settings(root, created):

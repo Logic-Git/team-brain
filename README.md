@@ -18,14 +18,16 @@ Another marketplace can list it without copying it:
   "name": "team-brain",
   "source": {
     "source": "git-subdir",
-    "url": "Logic-Git/team-brain",
+    "url": "https://github.com/Logic-Git/team-brain.git",
     "path": "plugins/team-brain",
     "ref": "v1.0.0"
   }
 }
 ```
 
-Pin `ref` to a release tag so only tagged releases reach that marketplace's users.
+Use the full HTTPS URL: the `owner/repo` shorthand makes Claude Code clone over SSH,
+which fails on machines without a GitHub SSH key. Pin `ref` to a release tag so only
+tagged releases reach that marketplace's users.
 
 ## Layout
 

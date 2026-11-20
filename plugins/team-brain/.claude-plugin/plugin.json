@@ -1,7 +1,7 @@
 {
   "name": "team-brain",
   "description": "Knowledge-graph memory for a person, a team or a company. Retrieves only the entries a question needs, falls back to MCP servers for entities with no context file, and records new knowledge automatically once it is confirmed (or only on request, in manual mode). Replaces Claude Code's built-in auto memory for the repo. Also keeps a prompts.md library of named, reusable prompts.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Taha Abid",
     "url": "https://github.com/Logic-Git"
